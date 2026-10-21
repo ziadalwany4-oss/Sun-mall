@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صن مول بورسعيد</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6600">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="صن مول">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+body{
+    background-color:#fff9f2;
+    color:#333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* مساحة علوية لشريط العنوان وزر التواصل */
+.top-header {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #19A7B9;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo {
+    height: 56px;
+}
+.brand-city {
+    font-size: 24px;
+    font-weight: 800;
+    color: #19A7B9;
+    border-right: 2px solid #e3e3e3;
+    padding-right: 12px;
+}
+.top-header .contact-btn {
+    background-color: #ff6600;
+    color: #ffffff;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-right: auto;
+}
+
+.hero-section {
+        background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+        color: white;
+        text-align: center;
+        padding: 40px 20px 70px; /* مساحة مظبوطة بدون أخذ الشاشة بالكامل */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 0 50% 50% / 0 0 50px 50px;
+}
+.hero-section h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+}
+
+.hl {
+    color: #FFE14D;
+}
+
+.hero-section p {
+        font-size: 20px;
+        margin-bottom: 15px;
+        opacity: 0.95;
+}
+
+/* قسم المنتجات */
+.products {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 14px 90px;
+}
+.section-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: #19A7B9;
+    margin-bottom: 24px;
+}
+.section-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background-color: #ff6600;
+    border-radius: 2px;
+    margin: 8px auto 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 14px;
+}
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 20px;
+    }
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+.card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+.card h3 {
+    padding: 12px 10px 16px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+}
+.price {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #ff6600;
+    color: #ffffff;
+    border: 3px solid #FFE14D;
+    border-radius: 30px;
+    padding: 4px 14px;
+    font-weight: 800;
+    font-size: 20px;
+}
+.price small {
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 3px;
+}
+
+/* زرار واتساب ثابت في ركن الشاشة */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 100;
+}
+
+/* مسافة بين الهيدر والفوتر */
+.headr {
+    margin-bottom: 60px;
+}
+
+/* الفوتر */
+.site-footer {
+    background-color: #2b211c;
+    color: #e6dcd3;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-top: auto;
+    border-top: 3px solid #ff6600;
+}
+.site-footer strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+.site-footer p + p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #efe6de;
+}
+.site-footer .dev {
+    color: #ff8a3d;
+    font-weight: 700;
+}
+@media (max-width: 600px) {
+    .site-footer { padding-bottom: 80px; }
+}
+
+/* اسم الماركت في نص الشريط العلوي */
+.top-title {
+    flex: 1;
+    text-align: center;
+    font-size: clamp(17px, 4.6vw, 28px);
+    font-weight: 800;
+    margin: 0 8px;
+    line-height: 1.3;
+}
+.t-orange { color: #ff6600; }
+.t-teal { color: #19A7B9; }
+@media (max-width: 600px) {
+    .top-header { padding: 10px 12px; }
+    .logo { height: 44px; }
+    .top-header .contact-btn { padding: 6px 12px; font-size: 13px; }
+}
+
+/* موقعنا ومواعيد العمل */
+.store {
+    width: min(560px, 92%);
+    margin: 0 auto 50px;
+}
+.store-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #2b211c;
+}
+.store-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #ff6600;
+    border-radius: 2px;
+    margin: 10px auto 24px;
+}
+.store-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(43,33,28,0.12);
+}
+.store-info {
+    padding: 26px 24px;
+}
+.status {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+.status.open { background: #1e9e4a; }
+.status.closed { background: #d62828; }
+.row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.row .ico {
+    flex: 0 0 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff1e6;
+    color: #ff6600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+.row .lbl {
+    font-size: 13px;
+    color: #8a7b72;
+}
+.row .val {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2b211c;
+    line-height: 1.6;
+}
+.store-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.btn {
+    padding: 10px 22px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+}
+.btn-main { background: #ff6600; color: #ffffff; }
+.btn-alt { border: 2px solid #19A7B9; color: #19A7B9; }
+
+/* مكان المنتجات */
+.products {
+    width: min(1000px, 92%);
+    margin: 0 auto 50px;
+}
+.products-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #2b211c;
+}
+.products-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #ff6600;
+    border-radius: 2px;
+    margin: 10px auto 24px;
+}
+.soon {
+    text-align: center;
+    color: #8a7b72;
+    font-size: 16px;
+    padding: 20px 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+}
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(43,33,28,0.12);
+}
+.card img, .card .noimg {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+.card .noimg {
+    background: #fff1e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+.card h3 {
+    margin: 0;
+    padding: 12px 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2b211c;
+    text-align: center;
+    border-top: 3px solid #ff6600;
+}
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+.price {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #d62828;
+    color: #ffffff;
+    border: 2px solid #ffd21f;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-weight: 800;
+    font-size: 17px;
+}
+@media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+}
+
+/* زرار تثبيت التطبيق */
+#install-btn {
+    display: none;
+    margin-top: 12px;
+    background: #FFE14D;
+    color: #2b211c;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+#ios-hint {
+    display: none;
+    margin-top: 12px;
+    font-size: 14px;
+    background: rgba(255,255,255,0.22);
+    padding: 8px 14px;
+    border-radius: 12px;
+}
+</style>
+</head>
+<body>
+<div class="headr">
+<header>
+
+<div class="top-header">
+    <div class="brand">
+        <img src="logo.png" alt="صن مول" class="logo">
+    </div>
+    <h2 class="top-title"><span class="t-orange">صن مول</span> <span class="t-teal">بورسعيد</span></h2>
+    <a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="contact-btn" target="_blank" rel="noopener">تواصل معنا</a>
+</div>
+
+<section class="hero-section">
+<h1>مرحبا بكم فى <span class="hl">صن مول بورسعيد</span></h1>
+<p>كل ما تحتاج عروض مش هتلاقيها غير في صن ماركت بورسعيد</p>
+    <button id="install-btn" type="button">📲 ثبّت التطبيق على موبايلك</button>
+    <p id="ios-hint">لتثبيت التطبيق: اضغط زرار المشاركة في سفاري، ثم "إضافة إلى الشاشة الرئيسية"</p>
+</section>
+</header>
+</div>
+
+<section class="products">
+    <h2 class="products-title">منتجاتنا وعروضنا</h2>
+    <div class="grid" id="list"></div>
+    <p class="soon" id="soon">العروض والمنتجات هتتضاف قريباً</p>
+</section>
+
+<section class="store">
+    <h2 class="store-title">موقعنا ومواعيد العمل</h2>
+    <div class="store-card">
+        <div class="store-info">
+            <div id="status" class="status">...</div>
+            <div class="row">
+                <div class="ico">📍</div>
+                <div><div class="lbl">العنوان</div><div class="val" id="address"></div></div>
+            </div>
+            <div class="row">
+                <div class="ico">🕒</div>
+                <div><div class="lbl">مواعيد العمل</div><div class="val" id="hours"></div></div>
+            </div>
+            <div class="row">
+                <div class="ico">📞</div>
+                <div><div class="lbl">للتواصل</div><div class="val" id="phone" dir="ltr" style="text-align:right"></div></div>
+            </div>
+            <div class="store-btns">
+                <a id="dir-link" class="btn btn-main" href="#" target="_blank" rel="noopener">عرض الموقع على الخريطة</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <p>© 2026 <strong>صن مول بورسعيد</strong>. جميع الحقوق محفوظة.</p>
+    <p>تصميم وبرمجة: <strong class="dev">زياد سامي</strong></p>
+</footer>
+<a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="whatsapp-float" target="_blank" rel="noopener">واتساب 💬</a>
+<script>
+// ===== عدّل بيانات الماركت هنا =====
+const shop = {
+    address: "ش طرح البحر 2، بجوار مسجد السلام، أمام جلال كافيه - بورسعيد",
+    lat: 31.269194,      // خط العرض
+    lon: 32.312472,      // خط الطول
+    phone: "01061820998",
+    openTime: "08:00",   // ساعة الفتح (نظام 24 ساعة)
+    closeTime: "23:30"   // ساعة الإغلاق (لو بعد نص الليل اكتب مثلا 01:00)
+};
+// =================================
+
+const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const fmt = t => {
+    let [h, m] = t.split(":").map(Number);
+    const p = h >= 12 ? "م" : "ص";
+    h = h % 12 || 12;
+    return h + ":" + String(m).padStart(2, "0") + " " + p;
+};
+
+// الوقت الحالي بتوقيت القاهرة
+function nowMinutes() {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Cairo", hour: "2-digit", minute: "2-digit", hour12: false
+    }).formatToParts(new Date());
+    const h = Number(parts.find(x => x.type === "hour").value) % 24;
+    const m = Number(parts.find(x => x.type === "minute").value);
+    return h * 60 + m;
+}
+
+function isOpen() {
+    const n = nowMinutes(), o = toMin(shop.openTime), c = toMin(shop.closeTime);
+    return o < c ? (n >= o && n < c) : (n >= o || n < c);
+}
+
+function render() {
+    const el = document.getElementById("status");
+    const open = isOpen();
+    el.textContent = open ? "مفتوح الآن" : "مغلق الآن";
+    el.className = "status " + (open ? "open" : "closed");
+}
+
+document.getElementById("hours").textContent = "🕒 من " + fmt(shop.openTime) + " إلى " + fmt(shop.closeTime);
+document.getElementById("address").textContent = "📍 " + shop.address;
+document.getElementById("phone").innerHTML = '<a href="tel:+2' + shop.phone + '" style="color:inherit;text-decoration:none">' + shop.phone + '</a>';
+document.getElementById("dir-link").href = "https://www.google.com/maps?q=" + shop.lat + "," + shop.lon;
+render();
+setInterval(render, 60000);
+
+// ===== المنتجات: كل منتج سطر واحد =====
+// مثال:  { name: "كفتة دارا وزن", price: 174.95, image: "kofta.jpg" },
+// لو مفيش صورة اكتب بس الاسم والسعر
+const products = [
+    { name: "كفتة دارا وزن", price: 174.95, image: "kofta.jpg" },
+    { name: "أرز مصري 1 كجم", price: 45 },
+];
+
+// صورة المنتج، ولو مفيش أو مش شغالة نحط مكانها 🛒
+function makeImage(p) {
+    const placeholder = () => {
+        const d = document.createElement("div");
+        d.className = "noimg";
+        d.textContent = "🛒";
+        return d;
+    };
+    if (!p.image) return placeholder();
+    const img = document.createElement("img");
+    img.src = p.image;
+    img.alt = p.name;
+    img.onerror = () => img.replaceWith(placeholder());
+    return img;
+}
+
+// نرسم الكروت
+function showProducts(list) {
+    const box = document.getElementById("list");
+    const soon = document.getElementById("soon");
+    box.innerHTML = "";
+    list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.appendChild(makeImage(p));
+        if (!isNaN(p.price)) {
+            const price = document.createElement("span");
+            price.className = "price";
+            price.textContent = p.price + " جنيه";
+            card.appendChild(price);
+        }
+        const title = document.createElement("h3");
+        title.textContent = p.name;
+        card.appendChild(title);
+        box.appendChild(card);
+    });
+    soon.style.display = list.length ? "none" : "block";
+}
+
+showProducts(products);
+
+// ===== تثبيت التطبيق =====
+let deferredPrompt = null;
+const installBtn = document.getElementById("install-btn");
+const iosHint = document.getElementById("ios-hint");
+const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+
+window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!isStandalone) installBtn.style.display = "inline-block";
+});
+
+installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+});
+
+window.addEventListener("appinstalled", () => {
+    installBtn.style.display = "none";
+});
+
+// آيفون مفيهوش زرار تثبيت تلقائي، فنعرض تعليمات
+if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !isStandalone) {
+    iosHint.style.display = "block";
+}
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+</script>
+</body>
+</html>
