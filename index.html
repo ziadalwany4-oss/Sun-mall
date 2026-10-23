@@ -345,6 +345,18 @@ body{
     font-size: 16px;
     padding: 20px 0;
 }
+.updated {
+    display: none;
+    width: fit-content;
+    margin: 0 auto 20px;
+    padding: 6px 16px;
+    background: #fff1e6;
+    color: #2b211c;
+    border: 1.5px solid #ff6600;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 700;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -482,6 +494,7 @@ body{
 
 <section class="products">
     <h2 class="products-title">منتجاتنا وعروضنا</h2>
+    <p class="updated" id="updated"></p>
     <div class="grid" id="list"></div>
     <p class="soon" id="soon">العروض والمنتجات هتتضاف قريباً</p>
 </section>
@@ -564,6 +577,11 @@ document.getElementById("dir-link").href = "https://www.google.com/maps?q=" + sh
 render();
 setInterval(render, 60000);
 
+// تاريخ آخر تحديث للأسعار: غيّره كل ما تعدّل الأسعار (سنة-شهر-يوم)
+const lastUpdate = "2026-10-23";
+const dateText = new Date(lastUpdate + "T12:00:00")
+    .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
+
 // ===== المنتجات: كل منتج سطر واحد =====
 // مثال:  { name: "كفتة دارا وزن", price: 174.95, image: "kofta.jpg" },
 // لو مفيش صورة اكتب بس الاسم والسعر
@@ -616,6 +634,9 @@ function showProducts(list) {
         box.appendChild(card);
     });
     soon.style.display = list.length ? "none" : "block";
+    const updated = document.getElementById("updated");
+    updated.textContent = "🗓️ آخر تحديث للأسعار: " + dateText;
+    updated.style.display = list.length ? "block" : "none";
 }
 
 showProducts(products);
