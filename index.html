@@ -578,7 +578,7 @@ render();
 setInterval(render, 60000);
 
 // تاريخ آخر تحديث للأسعار: غيّره كل ما تعدّل الأسعار (سنة-شهر-يوم)
-const lastUpdate = "2026-10-23";
+const lastUpdate = "2026-10-24";
 const dateText = new Date(lastUpdate + "T12:00:00")
     .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
 
@@ -589,8 +589,8 @@ const dateText = new Date(lastUpdate + "T12:00:00")
 const products = [
     { name: "سمان رويال سوبر جامبو", price: 126, image: "dar.jpeg" },
     { name: "برجر دارا وزن", price: 229.95 , image: "kofta.jpg" },
-    { name: "", price: , image: "" },
-    { name: "", price: , image: ""},
+    { name: "سجق دارا وزن", price: 229.95 , image: "sag.jpeg" },
+    { name: "طبق كفتة", price: 229.95 , image: "bar.jpeg"},
 ];
 
 // صورة المنتج، ولو مفيش أو مش شغالة نحط مكانها 🛒
