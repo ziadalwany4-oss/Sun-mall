@@ -52,13 +52,6 @@ body{
 .logo {
     height: 56px;
 }
-.brand-city {
-    font-size: 24px;
-    font-weight: 800;
-    color: #19A7B9;
-    border-right: 2px solid #e3e3e3;
-    padding-right: 12px;
-}
 .top-header .contact-btn {
     background-color: #ff6600;
     color: #ffffff;
@@ -74,7 +67,7 @@ body{
         background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
         color: white;
         text-align: center;
-        padding: 40px 20px 70px; /* مساحة مظبوطة بدون أخذ الشاشة بالكامل */
+        padding: 40px 20px 70px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -97,74 +90,51 @@ body{
         opacity: 0.95;
 }
 
-/* قسم المنتجات */
-.products {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 30px 14px 90px;
-}
-.section-title {
+/* تصميم صندوق زر تثبيت التطبيق الواضح والبارز */
+.install-container {
+    display: none;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 2px dashed #FFE14D;
     text-align: center;
-    font-size: 30px;
-    font-weight: 800;
-    color: #19A7B9;
-    margin-bottom: 24px;
+    width: min(90%, 400px);
 }
-.section-title::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 4px;
-    background-color: #ff6600;
-    border-radius: 2px;
-    margin: 8px auto 0;
-}
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-    gap: 14px;
-}
-@media (min-width: 640px) {
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 20px;
-    }
-}
-.card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-}
-.card img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-}
-.card h3 {
-    padding: 12px 10px 16px;
-    text-align: center;
-    font-size: 17px;
+.install-title {
+    font-size: 16px;
     font-weight: 700;
-}
-.price {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background-color: #ff6600;
     color: #ffffff;
-    border: 3px solid #FFE14D;
-    border-radius: 30px;
-    padding: 4px 14px;
-    font-weight: 800;
-    font-size: 20px;
+    margin-bottom: 10px;
 }
-.price small {
-    font-size: 12px;
-    font-weight: 600;
-    margin-right: 3px;
+#install-btn {
+    background: #FFE14D;
+    color: #2b211c;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+#install-btn:hover {
+    background: #ffcc00;
+    transform: translateY(-2px);
+}
+#ios-hint {
+    display: none;
+    margin-top: 12px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #2b211c;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* زرار واتساب ثابت في ركن الشاشة */
@@ -183,7 +153,6 @@ body{
     z-index: 100;
 }
 
-/* مسافة بين الهيدر والفوتر */
 .headr {
     margin-bottom: 60px;
 }
@@ -217,7 +186,6 @@ body{
     .site-footer { padding-bottom: 80px; }
 }
 
-/* اسم الماركت في نص الشريط العلوي */
 .top-title {
     flex: 1;
     text-align: center;
@@ -319,7 +287,7 @@ body{
 .btn-main { background: #ff6600; color: #ffffff; }
 .btn-alt { border: 2px solid #19A7B9; color: #19A7B9; }
 
-/* مكان المنتجات */
+/* مكان المنتجات والأقسام */
 .products {
     width: min(1000px, 92%);
     margin: 0 auto 50px;
@@ -337,8 +305,34 @@ body{
     height: 4px;
     background: #ff6600;
     border-radius: 2px;
-    margin: 10px auto 24px;
+    margin: 10px auto 20px;
 }
+
+/* أزرار الأقسام */
+.categories-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+.cat-btn {
+    background: #ffffff;
+    border: 2px solid #ff6600;
+    color: #ff6600;
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Cairo', sans-serif;
+}
+.cat-btn.active, .cat-btn:hover {
+    background: #ff6600;
+    color: #ffffff;
+}
+
 .soon {
     text-align: center;
     color: #8a7b72;
@@ -368,6 +362,10 @@ body{
     overflow: hidden;
     position: relative;
     box-shadow: 0 2px 10px rgba(43,33,28,0.12);
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-4px);
 }
 .card img, .card .noimg {
     display: block;
@@ -391,12 +389,6 @@ body{
     text-align: center;
     border-top: 3px solid #ff6600;
 }
-.card {
-    transition: transform 0.2s;
-}
-.card:hover {
-    transform: translateY(-4px);
-}
 .price {
     position: absolute;
     top: 8px;
@@ -411,30 +403,6 @@ body{
 }
 @media (min-width: 768px) {
     .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
-}
-
-/* زرار تثبيت التطبيق */
-#install-btn {
-    display: none;
-    margin-top: 12px;
-    background: #FFE14D;
-    color: #2b211c;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 24px;
-    font-family: inherit;
-    font-weight: 800;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 3px 0 rgba(0,0,0,0.2);
-}
-#ios-hint {
-    display: none;
-    margin-top: 12px;
-    font-size: 14px;
-    background: rgba(255,255,255,0.22);
-    padding: 8px 14px;
-    border-radius: 12px;
 }
 
 /* منتج غير متوفر */
@@ -484,19 +452,30 @@ body{
 </div>
 
 <section class="hero-section">
-<h1>مرحبا بكم فى <span class="hl">صن ماركت بورسعيد</span></h1>
-<p>كل ما تحتاج عروض مش هتلاقيها غير في صن ماركت بورسعيد</p>
-    <button id="install-btn" type="button">📲 ثبّت التطبيق على موبايلك</button>
-    <p id="ios-hint">لتثبيت التطبيق: اضغط زرار المشاركة في سفاري، ثم "إضافة إلى الشاشة الرئيسية"</p>
+    <h1>مرحبا بكم فى <span class="hl">صن ماركت بورسعيد</span></h1>
+    <p>كل ما تحتاج عروض مش هتلاقيها غير في صن ماركت بورسعيد</p>
+    
+    <!-- زر تثبيت التطبيق الواضح والبارز -->
+    <div id="install-box" class="install-container">
+        <div class="install-title">💡 نزّل تطبيق الماركت على موبايلك لسهولة المتابعة!</div>
+        <button id="install-btn" type="button">📲 ثبّت التطبيق الآن</button>
+    </div>
+
+    <!-- توضيح لمستخدمي آيفون -->
+    <p id="ios-hint">📌 لتثبيت التطبيق على آيفون: اضغط زر "المشاركة" في سفاري، ثم اختر "إضافة إلى الشاشة الرئيسية"</p>
 </section>
 </header>
 </div>
 
 <section class="products">
     <h2 class="products-title">منتجاتنا وعروضنا</h2>
+    
+    <!-- شريط الأقسام -->
+    <div class="categories-filter" id="categories-filter"></div>
+
     <p class="updated" id="updated"></p>
     <div class="grid" id="list"></div>
-    <p class="soon" id="soon">العروض والمنتجات هتتضاف قريباً</p>
+    <p class="soon" id="soon">لا توجد منتجات في هذا القسم حالياً</p>
 </section>
 
 <section class="store">
@@ -529,16 +508,15 @@ body{
 </footer>
 <a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="whatsapp-float" target="_blank" rel="noopener">واتساب 💬</a>
 <script>
-// ===== عدّل بيانات الماركت هنا =====
+// ===== بيانات الماركت =====
 const shop = {
     address: "ش طرح البحر 2، بجوار مسجد السلام، أمام جلال كافيه - بورسعيد",
-    lat: 31.269194,      // خط العرض
-    lon: 32.312472,      // خط الطول
+    lat: 31.269194,
+    lon: 32.312472,
     phone: "01061820998",
-    openTime: "08:00",   // ساعة الفتح (نظام 24 ساعة)
-    closeTime: "23:30"   // ساعة الإغلاق (لو بعد نص الليل اكتب مثلا 01:00)
+    openTime: "08:00",
+    closeTime: "23:30"
 };
-// =================================
 
 const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
 const fmt = t => {
@@ -548,7 +526,6 @@ const fmt = t => {
     return h + ":" + String(m).padStart(2, "0") + " " + p;
 };
 
-// الوقت الحالي بتوقيت القاهرة
 function nowMinutes() {
     const parts = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Africa/Cairo", hour: "2-digit", minute: "2-digit", hour12: false
@@ -563,7 +540,7 @@ function isOpen() {
     return o < c ? (n >= o && n < c) : (n >= o || n < c);
 }
 
-function render() {
+function renderStatus() {
     const el = document.getElementById("status");
     const open = isOpen();
     el.textContent = open ? "مفتوح الآن" : "مغلق الآن";
@@ -574,33 +551,47 @@ document.getElementById("hours").textContent = "🕒 من " + fmt(shop.openTime)
 document.getElementById("address").textContent = "📍 " + shop.address;
 document.getElementById("phone").innerHTML = '<a href="tel:+2' + shop.phone + '" style="color:inherit;text-decoration:none">' + shop.phone + '</a>';
 document.getElementById("dir-link").href = "https://www.google.com/maps?q=" + shop.lat + "," + shop.lon;
-render();
-setInterval(render, 60000);
+renderStatus();
+setInterval(renderStatus, 60000);
 
-// تاريخ آخر تحديث للأسعار: غيّره كل ما تعدّل الأسعار (سنة-شهر-يوم)
 const lastUpdate = "2026-10-25";
 const dateText = new Date(lastUpdate + "T12:00:00")
     .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
 
-// ===== المنتجات: كل منتج سطر واحد =====
-// مثال:  { name: "كفتة دارا وزن", price: 174.95, image: "kofta.jpg" },
-// لو مفيش صورة اكتب بس الاسم والسعر
-// لو المنتج خلص ضيف في آخره:  soldOut: true  (وامسحها لما يرجع)
+// ===== قائمة المنتجات بالأسعار الصحيحة المطابقة لللافته =====
 const products = [
-    { name: "سمان رويال سوبر جامبو", price: 126, image: "dar.jpeg" , cat:"لحوم" },
-    { name: "برجر دارا وزن", price: 229.95 , image: "kofta.jpg" },
-    { name: "سجق دارا وزن", price: 229.95 , image: "sag.jpeg" },
-    { name: "طبق كفتة وزن", price: 229.95 , image: "bar.jpeg"},
-    { name: "لحمه كتف برازيلى الكيلو", price: 330 , image: "brazel.jpg"},
-    { name: "لحمه موزه برازيلي الكيلو", price: 330 , image: "moza.jpg"},
-    { name: "لحمه كباب برازيلي الكيلو", price: 330 , image: "kabab.jpg"},
-    { name: "لحمه سن برازيلي الكيلو", price: 315, image: "san.jpg"},
-    { name: "لحمه رقبه برازيلى الكيلو ", price: 315 , image: "rag.jpg"},
-    { name: "مفروم برازيلي لحم صافى الكيلو", price: 315 , image: "maf.jpg"},
-    
+    { name: "سمان رويال سوبر جامبو", price: 126, image: "dar.jpeg", cat: "دواجن" },
+    { name: "برجر دارا وزن", price: 229.95, image: "kofta.jpg", cat: "الحوم" },
+    { name: "سجق دارا وزن", price: 229.95, image: "sag.jpeg", cat: "الحوم" },
+    { name: "طبق كفتة وزن", price: 229.95, image: "bar.jpeg", cat: "الحوم" },
+    { name: "لحمه كتف برازيلى الكيلو", price: 330, image: "brazel.jpg", cat: "الحوم" },
+    { name: "لحمه موزه برازيلي الكيلو", price: 330, image: "moza.jpg", cat: "الحوم" },
+    { name: "لحمه كباب برازيلي الكيلو", price: 330, image: "kabab.jpg", cat: "الحوم" },
+    { name: "لحمه سن برازيلي الكيلو", price: 315, image: "san.jpg", cat: "الحوم" },
+    { name: "لحمه رقبه برازيلى الكيلو", price: 315, image: "rag.jpg", cat: "الحوم" },
+    { name: "مفروم برازيلي لحم صافى الكيلو", price: 315, image: "maf.jpg", cat: "الحوم" },
+    { name: "الوطنية دجاج 1000-1100 جم", price: 179.95, image: "rtg.jpg", cat: "دواجن" },
+    { name: "الوطنية دجاج 1100-1200 جم", price: 194.95, image: "rtg.jpg", cat: "دواجن" },
+    { name: "شهد دجاج مجمد 1100-1200 جم", price: 184.95, image: "wal.jpg", cat: "دواجن" },
+    { name: "صن تشكين دجاج مجمد 1100-1200 جم", price: 151.95, image: "rfgh.jpg", cat: "دواجن" },
+    { name: "قلية زيت 2.100 مل", price: 179.95, image: "kala.jpg", cat: "الزيوت والسمن" },
+    { name: "كريستال عباد 1.6 لتر", price: 173.95, image: "abad.jpeg", cat: "الزيوت والسمن" },
+    { name: "كريستال سمن اصفر 2 كيلو", price: 234.95, image: "kerstal.jpeg", cat: "الزيوت والسمن" },
+    { name: "موبي جبنة موزاريلا طبيعي مبشور 1 كيلو", price: 309.95, image: "uij.jpg", cat: "الأجبان" },
+    { name: "موبي جبنة موزاريلا انالوج مبشور 1 كيلو", price: 149.95, image: "zas.jpg", cat: "الأجبان" },
+    { name: "جيفريكس بامية صغيرة 400 جم", price: 59.95, image: "sak.jpeg", cat: "الخضروات المجمدة" },
+    { name: "جيفريكس ورق عنب 250 جم", price: 54.95, image: "ewe.jpeg", cat: "الخضروات المجمدة" },
+    { name: "جيفريكس بامية خصوصي 400 جم", price: 89.95, image: "lal.jpeg", cat: "الخضروات المجمدة" },
+    { name: "بسمة بسلة سادة 400 جم", price: 52.95, image: "poi.jpeg", cat: "الخضروات المجمدة" },
+    { name: "جيفريكس بسلة سادة 400 جم", price: 59.95, image: "swq.jpeg", cat: "الخضروات المجمدة" },
+    { name: "بسمة بسلة بالجزر 400 جم", price: 28.50, image: "psla.jpg", cat: "الخضروات المجمدة" },
+    { name: "بسمة شوربة خضار 400 جم", price: 20.25, image: "sarp.jpg", cat: "الخضروات المجمدة" },
+    { name: "بسمة ملوخية 400 جم", price: 17.75, image: "wre.jpg", cat: "الخضروات المجمدة" },
+    { name: "بسمة بامية زيرو 400 جم", price: 47.95, image: "pama.jpg", cat: "الخضروات المجمدة" },
+    { name: "جيفريكس خضار للشوربة 400 جم", price: 25.95, image: "hg.jpeg", cat: "الخضروات المجمدة" },
+    { name: "جيفريكس بسلة بالجزر 400 جم", price: 44.95, image: "yuyu.jpeg", cat: "الخضروات المجمدة" }
 ];
 
-// صورة المنتج، ولو مفيش أو مش شغالة نحط مكانها 🛒
 function makeImage(p) {
     const placeholder = () => {
         const d = document.createElement("div");
@@ -616,12 +607,33 @@ function makeImage(p) {
     return img;
 }
 
-// نرسم الكروت
-function showProducts(list) {
+const categories = [...new Set(products.map(p => p.cat).filter(Boolean))];
+let currentCategory = categories[0] || "";
+
+function showProducts() {
     const box = document.getElementById("list");
     const soon = document.getElementById("soon");
+    const filterBox = document.getElementById("categories-filter");
+    
+    if (filterBox.innerHTML === "") {
+        categories.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className = cat === currentCategory ? "cat-btn active" : "cat-btn";
+            btn.textContent = cat;
+            btn.onclick = () => {
+                currentCategory = cat;
+                document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                showProducts();
+            };
+            filterBox.appendChild(btn);
+        });
+    }
+
+    const filteredList = products.filter(p => p.cat === currentCategory);
+
     box.innerHTML = "";
-    list.forEach(p => {
+    filteredList.forEach(p => {
         const card = document.createElement("div");
         card.className = p.soldOut ? "card soldout" : "card";
         card.appendChild(makeImage(p));
@@ -642,16 +654,18 @@ function showProducts(list) {
         card.appendChild(title);
         box.appendChild(card);
     });
-    soon.style.display = list.length ? "none" : "block";
+
+    soon.style.display = filteredList.length ? "none" : "block";
     const updated = document.getElementById("updated");
     updated.textContent = "🗓️ آخر تحديث للأسعار: " + dateText;
-    updated.style.display = list.length ? "block" : "none";
+    updated.style.display = filteredList.length ? "block" : "none";
 }
 
-showProducts(products);
+showProducts();
 
-// ===== تثبيت التطبيق =====
+// ===== تفعيل زر التثبيت والتوجيه =====
 let deferredPrompt = null;
+const installBox = document.getElementById("install-box");
 const installBtn = document.getElementById("install-btn");
 const iosHint = document.getElementById("ios-hint");
 const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
@@ -659,7 +673,9 @@ const isStandalone = window.matchMedia("(display-mode: standalone)").matches || 
 window.addEventListener("beforeinstallprompt", e => {
     e.preventDefault();
     deferredPrompt = e;
-    if (!isStandalone) installBtn.style.display = "inline-block";
+    if (!isStandalone) {
+        installBox.style.display = "block";
+    }
 });
 
 installBtn.addEventListener("click", async () => {
@@ -667,15 +683,15 @@ installBtn.addEventListener("click", async () => {
     deferredPrompt.prompt();
     await deferredPrompt.userChoice;
     deferredPrompt = null;
-    installBtn.style.display = "none";
+    installBox.style.display = "none";
 });
 
 window.addEventListener("appinstalled", () => {
-    installBtn.style.display = "none";
+    installBox.style.display = "none";
 });
 
-// آيفون مفيهوش زرار تثبيت تلقائي، فنعرض تعليمات
 if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !isStandalone) {
+    installBox.style.display = "block";
     iosHint.style.display = "block";
 }
 
