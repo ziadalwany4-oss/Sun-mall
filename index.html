@@ -578,7 +578,7 @@ render();
 setInterval(render, 60000);
 
 // تاريخ آخر تحديث للأسعار: غيّره كل ما تعدّل الأسعار (سنة-شهر-يوم)
-const lastUpdate = "2026-10-24";
+const lastUpdate = "2026-10-25";
 const dateText = new Date(lastUpdate + "T12:00:00")
     .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
 
@@ -591,6 +591,13 @@ const products = [
     { name: "برجر دارا وزن", price: 229.95 , image: "kofta.jpg" },
     { name: "سجق دارا وزن", price: 229.95 , image: "sag.jpeg" },
     { name: "طبق كفتة وزن", price: 229.95 , image: "bar.jpeg"},
+    { name: "لحمه كتف برازيلى الكيلو", price: 330 , image: "brazel.jpg"},
+    { name: "لحمه موزه برازيلي الكيلو", price: 330 , image: "moza.jpg"},
+    { name: "لحمه كباب برازيلي الكيلو", price: 330 , image: "kabab.jpg"},
+    { name: "لحمه سن برازيلي الكيلو", price: 315, image: "san.jpg"},
+    { name: "لحمه رقبه برازيلى الكيلو ", price: 315 , image: "rag.jpg"},
+    { name: "لحمه مفروم ناعم الكيلو", price: 315 , image: "maf.jpeg"},
+    
 ];
 
 // صورة المنتج، ولو مفيش أو مش شغالة نحط مكانها 🛒
