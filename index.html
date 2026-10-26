@@ -645,13 +645,13 @@ function makeImage(p) {
     return img;
 }
 
-// ترتيب الأقسام وأيقوناتها. أي قسم جديد تكتبه في منتج بيظهر لوحده في الآخر
+// ترتيب الأقسام وأيقوناتها بدون "الكل"
 const catOrder = ["اللحوم", "دواجن", "الزيوت والسمن", "الأجبان", "الخضروات المجمدة"];
-const catIcons = { "الكل": "🛒", "اللحوم": "🥩", "دواجن": "🍗", "الزيوت والسمن": "🫒", "الأجبان": "🧀", "الخضروات المجمدة": "🥦" };
+const catIcons = { "اللحوم": "🥩", "دواجن": "🍗", "الزيوت والسمن": "🫒", "الأجبان": "🧀", "الخضروات المجمدة": "🥦" };
 const found = [...new Set(products.map(p => p.cat).filter(Boolean))];
 const rank = c => { const i = catOrder.indexOf(c); return i < 0 ? 99 : i; };
-const categories = ["الكل", ...found.sort((a, b) => rank(a) - rank(b))];
-let currentCategory = "الكل";
+const categories = found.sort((a, b) => rank(a) - rank(b));
+let currentCategory = categories[0] || "";
 
 function showProducts() {
     const box = document.getElementById("list");
@@ -662,7 +662,7 @@ function showProducts() {
         categories.forEach(cat => {
             const btn = document.createElement("button");
             btn.className = cat === currentCategory ? "cat-btn active" : "cat-btn";
-            const count = cat === "الكل" ? products.length : products.filter(p => p.cat === cat).length;
+            const count = products.filter(p => p.cat === cat).length;
             btn.innerHTML = '<span class="cat-ico">' + (catIcons[cat] || "🛍️") + '</span><span>' + cat + '</span><span class="cat-count">' + count + '</span>';
             btn.onclick = () => {
                 currentCategory = cat;
@@ -675,7 +675,7 @@ function showProducts() {
         });
     }
 
-    const filteredList = currentCategory === "الكل" ? products : products.filter(p => p.cat === currentCategory);
+    const filteredList = products.filter(p => p.cat === currentCategory);
 
     box.innerHTML = "";
     filteredList.forEach(p => {
