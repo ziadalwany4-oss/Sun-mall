@@ -308,29 +308,65 @@ body{
     margin: 10px auto 20px;
 }
 
-/* أزرار الأقسام */
+/* أزرار الأقسام: شريط بيتحرك بالسحب على الموبايل وبيفضل ثابت فوق وانت بتنزل */
 .categories-filter {
     display: flex;
-    justify-content: center;
+    justify-content: safe center;
     gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
+    overflow-x: auto;
+    padding: 10px 4px 12px;
+    margin: 0 -4px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255, 249, 242, 0.95);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
 }
+.categories-filter::-webkit-scrollbar { display: none; }
 .cat-btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
     background: #ffffff;
-    border: 2px solid #ff6600;
-    color: #ff6600;
-    padding: 8px 20px;
-    border-radius: 24px;
+    border: 2px solid #ffd9bf;
+    color: #5a3a24;
+    padding: 9px 16px;
+    border-radius: 999px;
     font-weight: 700;
     font-size: 15px;
-    cursor: pointer;
-    transition: all 0.2s;
     font-family: 'Cairo', sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(43, 33, 28, 0.06);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
 }
-.cat-btn.active, .cat-btn:hover {
-    background: #ff6600;
+.cat-btn .cat-ico { font-size: 18px; line-height: 1; }
+.cat-btn .cat-count {
+    font-size: 12px;
+    font-weight: 800;
+    background: #fff1e6;
+    color: #ff6600;
+    border-radius: 999px;
+    padding: 0 8px;
+    line-height: 20px;
+}
+.cat-btn:active { transform: scale(0.95); }
+.cat-btn.active {
+    background: linear-gradient(135deg, #ff6600, #ff8800);
+    border-color: #ff6600;
     color: #ffffff;
+    box-shadow: 0 6px 16px rgba(255, 102, 0, 0.35);
+}
+.cat-btn.active .cat-count {
+    background: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+}
+@media (hover: hover) {
+    .cat-btn:not(.active):hover { border-color: #ff6600; color: #ff6600; }
 }
 
 .soon {
@@ -561,15 +597,15 @@ const dateText = new Date(lastUpdate + "T12:00:00")
 // ===== قائمة المنتجات بالأسعار الصحيحة المطابقة لللافته =====
 const products = [
     { name: "سمان رويال سوبر جامبو", price: 126, image: "dar.jpeg", cat: "دواجن" },
-    { name: "برجر دارا وزن", price: 229.95, image: "kofta.jpg", cat: "الحوم" },
-    { name: "سجق دارا وزن", price: 229.95, image: "sag.jpeg", cat: "الحوم" },
-    { name: "طبق كفتة وزن", price: 229.95, image: "bar.jpeg", cat: "الحوم" },
-    { name: "لحمه كتف برازيلى الكيلو", price: 330, image: "brazel.jpg", cat: "الحوم" },
-    { name: "لحمه موزه برازيلي الكيلو", price: 330, image: "moza.jpg", cat: "الحوم" },
-    { name: "لحمه كباب برازيلي الكيلو", price: 330, image: "kabab.jpg", cat: "الحوم" },
-    { name: "لحمه سن برازيلي الكيلو", price: 315, image: "san.jpg", cat: "الحوم" },
-    { name: "لحمه رقبه برازيلى الكيلو", price: 315, image: "rag.jpg", cat: "الحوم" },
-    { name: "مفروم برازيلي لحم صافى الكيلو", price: 315, image: "maf.jpg", cat: "الحوم" },
+    { name: "برجر دارا وزن", price: 229.95, image: "kofta.jpg", cat: "اللحوم" },
+    { name: "سجق دارا وزن", price: 229.95, image: "sag.jpeg", cat: "اللحوم" },
+    { name: "طبق كفتة وزن", price: 229.95, image: "bar.jpeg", cat: "اللحوم" },
+    { name: "لحمه كتف برازيلى الكيلو", price: 330, image: "brazel.jpg", cat: "اللحوم" },
+    { name: "لحمه موزه برازيلي الكيلو", price: 330, image: "moza.jpg", cat: "اللحوم" },
+    { name: "لحمه كباب برازيلي الكيلو", price: 330, image: "kabab.jpg", cat: "اللحوم" },
+    { name: "لحمه سن برازيلي الكيلو", price: 315, image: "san.jpg", cat: "اللحوم" },
+    { name: "لحمه رقبه برازيلى الكيلو", price: 315, image: "rag.jpg", cat: "اللحوم" },
+    { name: "مفروم برازيلي لحم صافى الكيلو", price: 315, image: "maf.jpg", cat: "اللحوم" },
     { name: "الوطنية دجاج 1000-1100 جم", price: 179.95, image: "rtg.jpg", cat: "دواجن" },
     { name: "الوطنية دجاج 1100-1200 جم", price: 194.95, image: "rtg.jpg", cat: "دواجن" },
     { name: "شهد دجاج مجمد 1100-1200 جم", price: 184.95, image: "wal.jpg", cat: "دواجن" },
@@ -607,8 +643,13 @@ function makeImage(p) {
     return img;
 }
 
-const categories = [...new Set(products.map(p => p.cat).filter(Boolean))];
-let currentCategory = categories[0] || "";
+// ترتيب الأقسام وأيقوناتها. أي قسم جديد تكتبه في منتج بيظهر لوحده في الآخر
+const catOrder = ["اللحوم", "دواجن", "الزيوت والسمن", "الأجبان", "الخضروات المجمدة"];
+const catIcons = { "الكل": "🛒", "اللحوم": "🥩", "دواجن": "🍗", "الزيوت والسمن": "🫒", "الأجبان": "🧀", "الخضروات المجمدة": "🥦" };
+const found = [...new Set(products.map(p => p.cat).filter(Boolean))];
+const rank = c => { const i = catOrder.indexOf(c); return i < 0 ? 99 : i; };
+const categories = ["الكل", ...found.sort((a, b) => rank(a) - rank(b))];
+let currentCategory = "الكل";
 
 function showProducts() {
     const box = document.getElementById("list");
@@ -619,18 +660,20 @@ function showProducts() {
         categories.forEach(cat => {
             const btn = document.createElement("button");
             btn.className = cat === currentCategory ? "cat-btn active" : "cat-btn";
-            btn.textContent = cat;
+            const count = cat === "الكل" ? products.length : products.filter(p => p.cat === cat).length;
+            btn.innerHTML = '<span class="cat-ico">' + (catIcons[cat] || "🛍️") + '</span><span>' + cat + '</span><span class="cat-count">' + count + '</span>';
             btn.onclick = () => {
                 currentCategory = cat;
                 document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
+                btn.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
                 showProducts();
             };
             filterBox.appendChild(btn);
         });
     }
 
-    const filteredList = products.filter(p => p.cat === currentCategory);
+    const filteredList = currentCategory === "الكل" ? products : products.filter(p => p.cat === currentCategory);
 
     box.innerHTML = "";
     filteredList.forEach(p => {
