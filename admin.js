@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-import { getFirestore, collection, onSnapshot, doc, updateDoc, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 
 const app = initializeApp({
@@ -176,7 +176,6 @@ async function doLogin() {
 $("adm-go").onclick = doLogin;
 $("adm-pass").addEventListener("keydown", e => { if (e.key === "Enter") doLogin(); });
 
-// بيصغّر الصورة ويحوّلها JPEG صغيرة (حوالي 30-80 كيلو) عشان تتخزن في Firestore
 function fileToDataUrl(file) {
     return new Promise((resolve, reject) => {
         const url = URL.createObjectURL(file);
@@ -381,7 +380,7 @@ onAuthStateChanged(auth, user => {
 
 updateBar();
 
-// حفظ وتحديث التاريخ من لوحة المدير في Firestore
+// ===== حفظ وتحديث التاريخ من لوحة المدير في Firestore =====
 document.addEventListener("click", async (e) => {
     if (e.target && e.target.id === "save-date-btn") {
         const selectedDate = document.getElementById("admin-update-date").value;
@@ -403,6 +402,7 @@ document.addEventListener("click", async (e) => {
                 toast("تم حفظ وتحديث التاريخ بنجاح ✅");
             } catch (e2) {
                 toast("فشل حفظ التاريخ، تأكد إنك مسجل دخول", true);
-            }        }
+            }
+        }
     }
 });
