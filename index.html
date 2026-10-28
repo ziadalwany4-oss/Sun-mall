@@ -191,6 +191,7 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
     <p>تصميم وبرمجة: <strong class="dev">زياد سامى</strong></p>
 </footer>
 <a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="whatsapp-float" target="_blank" rel="noopener">واتساب 💬</a>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
@@ -205,15 +206,20 @@ const app = initializeApp({
 });
 const db = getFirestore(app);
 
-// جلب تاريخ التحديث من Firestore تلقائياً
 async function loadSiteDate() {
     try {
         const snap = await getDoc(doc(db, "settings", "siteInfo"));
+        let rawDate = "2026-10-28";
         if (snap.exists() && snap.data().lastUpdate) {
-            const updatedEl = document.getElementById("updated");
-            if (updatedEl) {
-                updatedEl.textContent = "🗓️ آخر تحديث للأسعار: " + snap.data().lastUpdate;
-            }
+            rawDate = snap.data().lastUpdate;
+        }
+        
+        let dateText = new Date(rawDate + "T12:00:00")
+            .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
+        
+        const updatedEl = document.getElementById("updated");
+        if (updatedEl) {
+            updatedEl.textContent = "⭐ آخر تحديث للأسعار: " + dateText;
         }
     } catch (e) {
         console.log("خطأ في جلب تاريخ التحديث:", e);
@@ -221,6 +227,7 @@ async function loadSiteDate() {
 }
 loadSiteDate();
 </script>
+
 <script>
 // ===== بيانات الماركت =====
 const shop = {
