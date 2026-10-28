@@ -107,7 +107,15 @@ panel.innerHTML = `
   <div id="adm-user-view" style="display:none">
     <div class="adm-who">✏️ وضع التعديل مفعّل</div>
     <button class="adm-btn green" id="adm-add" type="button">➕ إضافة منتج</button>
-    <button class="adm-btn red" id="adm-out" type="button">تسجيل خروج</button>
+    
+    <!-- خانة تحديث التاريخ -->
+    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ffd9bf; text-align: right;">
+        <label style="display:block; font-size:13px; font-weight:700; color:#8a7b72; margin-bottom:4px;">📅 تاريخ آخر تحديث للموقع</label>
+        <input type="date" id="admin-update-date" style="width:100%; padding:10px; border-radius:12px; border:2px solid #ffd9bf; margin-bottom:8px; font-family:'Cairo',sans-serif; outline:none;">
+        <button class="adm-btn teal" id="save-date-btn" type="button" style="background:#19A7B9; width:100%; padding:10px; border:none; border-radius:24px; color:#fff; font-weight:800; cursor:pointer; font-family:'Cairo',sans-serif;">حفظ التاريخ الجديد</button>
+    </div>
+
+    <button class="adm-btn red" id="adm-out" type="button" style="margin-top: 15px;">تسجيل خروج</button>
   </div>
 </div>`;
 document.body.appendChild(panel);
@@ -372,3 +380,29 @@ onAuthStateChanged(auth, user => {
 });
 
 updateBar();
+
+// حفظ وتحديث التاريخ من لوحة المدير في Firestore
+document.addEventListener("click", async (e) => {
+    if (e.target && e.target.id === "save-date-btn") {
+        const selectedDate = document.getElementById("admin-update-date").value;
+        if (!selectedDate) {
+            toast("من فضلك اختر التاريخ أولاً", true);
+            return;
+        }
+        try {
+            await updateDoc(doc(db, "settings", "siteInfo"), {
+                lastUpdate: selectedDate
+            }, { merge: true });
+            toast("تم تحديث تاريخ الموقع بنجاح ✅");
+        } catch (err) {
+            console.error(err);
+            try {
+                await setDoc(doc(db, "settings", "siteInfo"), {
+                    lastUpdate: selectedDate
+                });
+                toast("تم حفظ وتحديث التاريخ بنجاح ✅");
+            } catch (e2) {
+                toast("فشل حفظ التاريخ، تأكد إنك مسجل دخول", true);
+            }        }
+    }
+});
