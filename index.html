@@ -191,6 +191,36 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
     <p>تصميم وبرمجة: <strong class="dev">زياد سامى</strong></p>
 </footer>
 <a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="whatsapp-float" target="_blank" rel="noopener">واتساب 💬</a>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
+const app = initializeApp({
+    apiKey: "AIzaSyC9jimbxh2n-gBO_6RazEdDRDNNA1DtM60",
+    authDomain: "project-a52e3.firebaseapp.com",
+    projectId: "project-a52e3",
+    storageBucket: "project-a52e3.firebasestorage.app",
+    messagingSenderId: "30047291261",
+    appId: "1:30047291261:web:8ae372e43e45ebcc906e14"
+});
+const db = getFirestore(app);
+
+// جلب تاريخ التحديث من Firestore تلقائياً
+async function loadSiteDate() {
+    try {
+        const snap = await getDoc(doc(db, "settings", "siteInfo"));
+        if (snap.exists() && snap.data().lastUpdate) {
+            const updatedEl = document.getElementById("updated");
+            if (updatedEl) {
+                updatedEl.textContent = "🗓️ آخر تحديث للأسعار: " + snap.data().lastUpdate;
+            }
+        }
+    } catch (e) {
+        console.log("خطأ في جلب تاريخ التحديث:", e);
+    }
+}
+loadSiteDate();
+</script>
 <script>
 // ===== بيانات الماركت =====
 const shop = {
@@ -237,10 +267,6 @@ document.getElementById("phone").innerHTML = '<a href="tel:+2' + shop.phone + '"
 document.getElementById("dir-link").href = "https://www.google.com/maps?q=" + shop.lat + "," + shop.lon;
 renderStatus();
 setInterval(renderStatus, 60000);
-
-const lastUpdate = "2026-10-28";
-let dateText = new Date(lastUpdate + "T12:00:00")
-    .toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
 
 // ===== نسخة احتياطية للمنتجات (الأصل بيتقرا من Firestore) =====
 let products = [
@@ -307,10 +333,6 @@ function setProducts(list) {
     categories = [...new Set(products.map(p => p.cat).filter(Boolean))].sort((a, b) => rank(a) - rank(b));
     const offersAlive = currentCategory === OFFERS && products.some(isOffer);
     if (!offersAlive && !categories.includes(currentCategory)) currentCategory = categories[0] || "";
-    const stamps = products.map(p => p.updatedAt).filter(Boolean);
-    if (stamps.length) {
-        dateText = new Date(Math.max(...stamps)).toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "long", year: "numeric" });
-    }
     document.getElementById("categories-filter").innerHTML = "";
     showProducts();
 }
@@ -391,7 +413,6 @@ function showProducts() {
     soon.textContent = "لا توجد منتجات في هذا القسم حالياً";
     soon.style.display = filteredList.length ? "none" : "block";
     const updated = document.getElementById("updated");
-    updated.textContent = "🗓️ آخر تحديث للأسعار: " + dateText;
     updated.style.display = filteredList.length ? "block" : "none";
 }
 
