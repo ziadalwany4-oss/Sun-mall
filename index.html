@@ -6,6 +6,7 @@
 <title>صن ماركت بورسعيد</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff6600">
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("sd")&&!localStorage.getItem("adm1")){document.documentElement.classList.add("doors-on");sessionStorage.setItem("sd","1")}}catch(e){}</script>
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="صن مول">
@@ -19,178 +20,11 @@
   gtag('js', new Date());
   gtag('config', 'G-4Y4Y0VEFJY');
 </script>
-
-<!-- فحص فوري لمنع الرمشة عند الريفرش مباشرة قبل تحميل عناصر الصفحة -->
-<script>
-  (function() {
-    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var alreadyShown = sessionStorage.getItem("sun_intro_played");
-    if (prefersReduced || alreadyShown) {
-      document.documentElement.classList.add("skip-intro");
-    }
-  })();
-</script>
-
 <style>
-/* إخفاء شاشة المقدمة فوراً ومنع الرمشة لو كانت معروضة سابقاً */
-html.skip-intro #sun-market-intro {
-    display: none !important;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
 body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
 
-/* تصميم شاشة المقدمة الفخمة */
-#sun-market-intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: #03070c;
-    transition: opacity 0.6s ease;
-}
-
-/* الأبواب الأوتوماتيكية بتصميم 3D فخم */
-.market-door {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 2;
-}
-.door-left {
-    left: 0;
-    background: linear-gradient(135deg, #00d2ff 0%, #0077b6 100%);
-    border-right: 4px solid rgba(255,255,255,0.4);
-    box-shadow: inset -20px 0 40px rgba(0,0,0,0.3);
-}
-.door-right {
-    right: 0;
-    background: linear-gradient(135deg, #ff8800 0%, #cc5500 100%);
-    border-left: 4px solid rgba(255,255,255,0.4);
-    box-shadow: inset 20px 0 40px rgba(0,0,0,0.3);
-}
-
-/* محتوى المنتصف الجبار */
-.intro-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-    animation: zoomInContent 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.intro-logo-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 18px;
-}
-
-.intro-logo-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,102,0,0) 75%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: pulseGlow 1.8s infinite alternate;
-}
-
-.intro-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: #fff;
-    padding: 8px;
-    object-fit: contain;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    animation: bounceLogo 1s infinite alternate ease-in-out;
-}
-
-.intro-title {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-    letter-spacing: 1px;
-    color: #ffffff;
-}
-
-/* شارة حالة الماركت الفخمة */
-.market-status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 800;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
-    margin-top: 5px;
-}
-.badge-open {
-    background-color: #2b9348;
-    color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.4);
-}
-.badge-closed {
-    background-color: #d90429;
-    color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.4);
-}
-.status-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-    animation: pulseDot 1.2s infinite;
-}
-
-/* الحركات البصرية */
-@keyframes bounceLogo {
-    from { transform: translateY(0) scale(1); }
-    to { transform: translateY(-8px) scale(1.05); }
-}
-@keyframes pulseGlow {
-    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
-    to { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
-}
-@keyframes pulseDot {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(1.5); }
-    100% { opacity: 1; transform: scale(1); }
-}
-@keyframes zoomInContent {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* انميشن فتح الأبواب للجنبين */
-.doors-open .door-left {
-    transform: translateX(-100%);
-}
-.doors-open .door-right {
-    transform: translateX(100%);
-}
-.doors-open .intro-content {
-    opacity: 0;
-    transform: scale(1.2);
-}
-
-/* الهيدر وباقي تصميم الموقع الأصلي */
+/* الهيدر */
 .top-header { background-color: #ffffff; padding: 15px 30px; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 4px solid #19A7B9; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .logo { height: 56px; }
@@ -289,27 +123,49 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
 .cat-btn.offer-btn:not(.active) { animation: offerPulse 1.8s ease-in-out infinite; }
 @keyframes offerPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
 @media (hover: hover) { .cat-btn.offer-btn:not(.active):hover { border-color: #d62828; color: #d62828; } }
+
+/* مقدمة أبواب السوبر ماركت */
+.doors { display: none; position: fixed; inset: 0; z-index: 9999; touch-action: none; animation: dGone 0s 2.35s forwards; }
+.doors-on .doors { display: block; }
+.door { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; will-change: transform; }
+.d-r { right: 0; background: linear-gradient(135deg, #ff8800 0%, #ff6600 45%, #cc5500 100%); border-left: 4px solid rgba(255,255,255,.4); box-shadow: inset 20px 0 40px rgba(0,0,0,.28); animation: dOpenR .75s cubic-bezier(.77,0,.175,1) 1.55s forwards; }
+.d-l { left: 0; background: linear-gradient(135deg, #27bccf 0%, #19A7B9 50%, #0f7f8e 100%); border-right: 4px solid rgba(255,255,255,.4); box-shadow: inset -20px 0 40px rgba(0,0,0,.28); animation: dOpenL .75s cubic-bezier(.77,0,.175,1) 1.55s forwards; }
+.door::after { content: ""; position: absolute; top: -20%; bottom: -20%; width: 34%; left: 18%; background: rgba(255,255,255,.12); transform: skewX(-14deg); }
+.door .h { position: absolute; top: 66%; height: 68px; width: 7px; border-radius: 4px; background: rgba(255,255,255,.8); z-index: 1; }
+.d-r .h { left: 14px; }
+.d-l .h { right: 14px; }
+.d-center { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; color: #fff; padding: 20px; pointer-events: none; animation: dZoom .7s cubic-bezier(.175,.885,.32,1.275) both, dFade .3s ease 1.5s forwards; }
+.d-logo-wrap { position: relative; display: inline-block; margin-bottom: 18px; isolation: isolate; }
+.d-logo-wrap::after { content: ""; position: absolute; top: 50%; left: 50%; width: 160px; height: 160px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255,255,255,.45) 0%, rgba(255,102,0,0) 72%); border-radius: 50%; z-index: -1; animation: dGlow 1.8s infinite alternate; }
+.d-logo { display: block; width: 120px; height: 120px; border-radius: 50%; background: #fff; padding: 8px; object-fit: contain; box-shadow: 0 15px 35px rgba(0,0,0,.5); animation: dBounce 1s infinite alternate ease-in-out; }
+.d-name { font-weight: 800; font-size: clamp(24px, 7vw, 32px); margin-bottom: 12px; text-shadow: 0 3px 10px rgba(0,0,0,.6); }
+.d-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 5px; border-radius: 999px; padding: 10px 24px; font-weight: 800; font-size: 16px; color: #fff; border: 1.5px solid rgba(255,255,255,.5); box-shadow: 0 6px 25px rgba(0,0,0,.4); }
+.d-badge:empty { display: none; }
+.d-badge::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #fff; animation: dDot 1.2s infinite; }
+.d-badge.on { background: #2b9348; }
+.d-badge.off { background: #d90429; }
+.doors.skip { opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; }
+@keyframes dOpenR { to { transform: translateX(101%); } }
+@keyframes dOpenL { to { transform: translateX(-101%); } }
+@keyframes dZoom { from { opacity: 0; transform: translateY(-50%) scale(.8); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+@keyframes dFade { to { opacity: 0; transform: translateY(-50%) scale(1.2); } }
+@keyframes dBounce { from { transform: translateY(0) scale(1); } to { transform: translateY(-8px) scale(1.05); } }
+@keyframes dGlow { from { transform: translate(-50%, -50%) scale(.8); opacity: .4; } to { transform: translate(-50%, -50%) scale(1.3); opacity: 1; } }
+@keyframes dDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .3; transform: scale(1.5); } }
+@keyframes dGone { to { visibility: hidden; pointer-events: none; } }
+@media (prefers-reduced-motion: reduce) { .doors { display: none !important; } }
 </style>
 </head>
 <body>
-
-<!-- عنصر شاشة المقدمة الفخمة -->
-<div id="sun-market-intro">
-  <div class="market-door door-left"></div>
-  <div class="market-door door-right"></div>
-  
-  <div class="intro-content">
-    <div class="intro-logo-wrapper">
-      <img src="logo.png" alt="صن ماركت بورسعيد" class="intro-logo" onerror="this.style.display='none'">
+<div class="doors" id="doors" aria-hidden="true">
+    <div class="door d-r"><i class="h"></i></div>
+    <div class="door d-l"><i class="h"></i></div>
+    <div class="d-center">
+        <div class="d-logo-wrap"><img src="logo.png" alt="" class="d-logo" onerror="this.style.display='none'"></div>
+        <div class="d-name">صن ماركت بورسعيد</div>
+        <div class="d-badge" id="d-badge"></div>
     </div>
-    <div class="intro-title">صن ماركت بورسعيد</div>
-    <div id="dynamic-status-badge" class="market-status-badge badge-open">
-      <span class="status-dot"></span>
-      <span id="badge-text">جاري التحقق من المواعيد...</span>
-    </div>
-  </div>
 </div>
-
 <div class="headr">
 <header>
 
@@ -376,48 +232,6 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
     <p>تصميم وبرمجة: <strong class="dev">زياد سامى</strong></p>
 </footer>
 <a href="https://wa.me/201061820998?text=أهلاً، عاوز أسأل عن عروض صن مول" class="whatsapp-float" target="_blank" rel="noopener">واتساب 💬</a>
-
-<script>
-  // منطق تشغيل المقدمة وإدارتها عند أول فتح للجلسة
-  document.addEventListener("DOMContentLoaded", function () {
-    const intro = document.getElementById("sun-market-intro");
-    if (!intro || document.documentElement.classList.contains("skip-intro")) {
-      if (intro) intro.remove();
-      return;
-    }
-
-    sessionStorage.setItem("sun_intro_played", "true");
-
-    // حساب حالة الماركت تلقائياً (من 8:00 ص إلى 11:30 م)
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTimeVal = currentHour * 60 + currentMinute;
-    
-    const openTimeVal = 8 * 60; // 8:00 AM
-    const closeTimeVal = 23 * 60 + 30; // 11:30 PM
-    
-    const badgeElement = document.getElementById("dynamic-status-badge");
-    const badgeText = document.getElementById("badge-text");
-    
-    if (currentTimeVal >= openTimeVal && currentTimeVal <= closeTimeVal) {
-      badgeElement.className = "market-status-badge badge-open";
-      badgeText.innerText = "مفتوح الآن • لحد 11:30 م";
-    } else {
-      badgeElement.className = "market-status-badge badge-closed";
-      badgeText.innerText = "مغلق الآن • بنفتح 8:00 ص";
-    }
-
-    function openDoorsAndDismiss() {
-      intro.classList.add("doors-open");
-      setTimeout(() => {
-        intro.remove();
-      }, 1000);
-    }
-
-    setTimeout(openDoorsAndDismiss, 1600);
-  });
-</script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
@@ -502,7 +316,17 @@ document.getElementById("dir-link").href = "https://www.google.com/maps?q=" + sh
 renderStatus();
 setInterval(renderStatus, 60000);
 
-// ===== نسخة احتياطية للمنتجات =====
+// شارة مقدمة الأبواب: مفتوح الآن / مغلق الآن
+(function () {
+    const b = document.getElementById("d-badge");
+    if (!b) return;
+    const open = isOpen();
+    b.className = "d-badge " + (open ? "on" : "off");
+    b.textContent = open ? "مفتوح الآن • لحد " + fmt(shop.closeTime) : "مغلق الآن • بنفتح " + fmt(shop.openTime);
+})();
+
+
+// ===== نسخة احتياطية للمنتجات (الأصل بيتقرا من Firestore) =====
 let products = [
     { name: "صن مول زيت خليط 900 مل", price: 65, image: "srft.jpeg", cat: "الزيوت والسمن" },
     { name: "صن زيت عباد الشمس 900 مل", price: 69, image: "poik.jpg", cat: "الزيوت والسمن" },
@@ -554,7 +378,7 @@ function makeImage(p) {
     return img;
 }
 
-// ترتيب الأقسام وأيقوناتها
+// ترتيب الأقسام وأيقوناتها بدون "الكل"
 const catOrder = ["اللحوم", "دواجن", "الزيوت والسمن", "الأجبان", "الخضروات المجمدة"];
 const catIcons = { "اللحوم": "🥩", "دواجن": "🍗", "الزيوت والسمن": "🫒", "الأجبان": "🧀", "الخضروات المجمدة": "🥦" };
 const rank = c => { const i = catOrder.indexOf(c); return i < 0 ? 99 : i; };
@@ -571,7 +395,19 @@ function setProducts(list) {
     showProducts();
 }
 window.__setProducts = setProducts;
-window.__rerender = () => setProducts(products);
+const __baseRerender = () => setProducts(products);
+// المدير مش بيشوف مقدمة الأبواب (بيتعلّم إنه مدير ومش بتظهر له في المرات الجاية)
+window.__rerender = () => {
+    try {
+        if (window.__isAdmin) {
+            localStorage.setItem("adm1", "1");
+            document.getElementById("doors").classList.add("skip");
+        } else {
+            localStorage.removeItem("adm1");
+        }
+    } catch (e) {}
+    __baseRerender();
+};
 
 function showProducts() {
     const box = document.getElementById("list");
@@ -639,6 +475,7 @@ function showProducts() {
         const title = document.createElement("h3");
         title.textContent = p.name;
         card.appendChild(title);
+        // محرر الاسم والسعر (بيظهر للأدمن بس)
         if (window.__isAdmin && p.id) card.appendChild(window.__editor(p));
         box.appendChild(card);
     });
