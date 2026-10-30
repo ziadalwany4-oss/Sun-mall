@@ -125,16 +125,18 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
 @media (hover: hover) { .cat-btn.offer-btn:not(.active):hover { border-color: #d62828; color: #d62828; } }
 
 /* مقدمة أبواب السوبر ماركت */
-.doors { display: none; position: fixed; inset: 0; z-index: 9999; touch-action: none; animation: dGone 0s 3.2s forwards; }
+.doors { display: none; position: fixed; inset: 0; z-index: 9999; touch-action: none; animation: dGoneLate 0s 9s forwards; }
 .doors-on .doors { display: block; }
+.doors.go { animation: dGone 0s 3.7s forwards; }
+.doors:not(.go) .d-r, .doors:not(.go) .d-l, .doors:not(.go) .d-center { animation-play-state: paused; }
 .door { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; will-change: transform; }
-.d-r { right: 0; background: linear-gradient(135deg, #ff8800 0%, #ff6600 45%, #cc5500 100%); border-left: 4px solid rgba(255,255,255,.4); box-shadow: inset 20px 0 40px rgba(0,0,0,.28); animation: dOpenR .8s cubic-bezier(.77,0,.175,1) 2.35s forwards; }
-.d-l { left: 0; background: linear-gradient(135deg, #27bccf 0%, #19A7B9 50%, #0f7f8e 100%); border-right: 4px solid rgba(255,255,255,.4); box-shadow: inset -20px 0 40px rgba(0,0,0,.28); animation: dOpenL .8s cubic-bezier(.77,0,.175,1) 2.35s forwards; }
+.d-r { right: 0; background: linear-gradient(135deg, #ff8800 0%, #ff6600 45%, #cc5500 100%); border-left: 4px solid rgba(255,255,255,.4); box-shadow: inset 20px 0 40px rgba(0,0,0,.28); animation: dOpenR .8s cubic-bezier(.77,0,.175,1) 2.85s forwards; }
+.d-l { left: 0; background: linear-gradient(135deg, #27bccf 0%, #19A7B9 50%, #0f7f8e 100%); border-right: 4px solid rgba(255,255,255,.4); box-shadow: inset -20px 0 40px rgba(0,0,0,.28); animation: dOpenL .8s cubic-bezier(.77,0,.175,1) 2.85s forwards; }
 .door::after { content: ""; position: absolute; top: -20%; bottom: -20%; width: 34%; left: 18%; background: rgba(255,255,255,.12); transform: skewX(-14deg); }
 .door .h { position: absolute; top: 66%; height: 68px; width: 7px; border-radius: 4px; background: rgba(255,255,255,.8); z-index: 1; }
 .d-r .h { left: 14px; }
 .d-l .h { right: 14px; }
-.d-center { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; color: #fff; padding: 20px; pointer-events: none; animation: dZoom .7s cubic-bezier(.175,.885,.32,1.275) both, dFade .3s ease 2.3s forwards; }
+.d-center { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; color: #fff; padding: 20px; pointer-events: none; animation: dZoom .7s cubic-bezier(.175,.885,.32,1.275) both, dFade .3s ease 2.8s forwards; }
 .d-logo-wrap { position: relative; display: inline-block; margin-bottom: 18px; isolation: isolate; }
 .d-logo-wrap::after { content: ""; position: absolute; top: 50%; left: 50%; width: 160px; height: 160px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255,255,255,.45) 0%, rgba(255,102,0,0) 72%); border-radius: 50%; z-index: -1; animation: dGlow 1.8s infinite alternate; }
 .d-logo { display: block; width: 120px; height: 120px; border-radius: 50%; background: #fff; padding: 8px; object-fit: contain; box-shadow: 0 15px 35px rgba(0,0,0,.5); animation: dBounce 1s infinite alternate ease-in-out; }
@@ -153,6 +155,7 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
 @keyframes dGlow { from { transform: translate(-50%, -50%) scale(.8); opacity: .4; } to { transform: translate(-50%, -50%) scale(1.3); opacity: 1; } }
 @keyframes dDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .3; transform: scale(1.5); } }
 @keyframes dGone { to { visibility: hidden; pointer-events: none; } }
+@keyframes dGoneLate { to { visibility: hidden; pointer-events: none; } }
 @media (prefers-reduced-motion: reduce) { .doors { display: none !important; } }
 </style>
 </head>
@@ -166,6 +169,19 @@ body { background-color: #fff9f2; color: #333; min-height: 100vh; display: flex;
         <div class="d-badge" id="d-badge"></div>
     </div>
 </div>
+<script>
+// بيبدأ توقيت المقدمة لما اللوجو والخط يجهزوا (أقصى انتظار ثانية ونص) عشان العميل على النت البطيء يلحق يقرأ
+(function () {
+    var d = document.getElementById("doors"), done = false;
+    if (!d) return;
+    function go() { if (!done) { done = true; d.classList.add("go"); } }
+    var wait = [], img = d.querySelector(".d-logo");
+    if (document.fonts && document.fonts.ready) wait.push(document.fonts.ready);
+    if (img && !img.complete) wait.push(new Promise(function (r) { img.addEventListener("load", r); img.addEventListener("error", r); }));
+    Promise.all(wait).then(go, go);
+    setTimeout(go, 1500);
+})();
+</script>
 <div class="headr">
 <header>
 
